@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.ipynb_checkpoints
+.ipynb_checkpoints
+.git/
+.gitignore
+.gitattributes
+.vscode/
+__pycache__/
+.DS_Store
+*.log

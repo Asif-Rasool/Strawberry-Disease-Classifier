@@ -1,0 +1,10 @@
+# ──────────────────────────────────────────────────────────
+# .streamlit/config.toml
+# ── Theme: Southeastern Louisiana University brand
+[theme]
+base                     = "light"
+primaryColor             = "#1A5632"   # PMS 357/342 Green
+backgroundColor          = "#FFFFFF"   # clean white canvas
+secondaryBackgroundColor = "#F7F7F7"   # very light grey for cards/stripes
+textColor                = "#000000"   # classic black for copy
+font                     = "sans serif"  # Verdana/Open Sans family
