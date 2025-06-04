@@ -37,7 +37,7 @@ with col2:
 
     st.markdown(HEADER_ICONS, unsafe_allow_html=True)
 
-    st.title("SmartField LA: An End-to-End Deep Learning Framework for Real-Time Strawberry Disease Detection in Louisiana (test)")
+    st.title("SmartField LA: An End-to-End Deep Learning Framework for Real-Time Strawberry Disease Detection in Louisiana")
     st.markdown(
         """
 
