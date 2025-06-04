@@ -13,4 +13,4 @@ COPY . .
 EXPOSE 8080
 
 # Use the $PORT environment variable. If not set, default to 8501 for local testing.
-ENTRYPOINT ["sh", "-c", "streamlit run 0_Background.py --server.port=${PORT:-8501} --server.address=0.0.0.0"]
+ENTRYPOINT ["sh", "-c", "streamlit run 0_Introduction.py --server.port=${PORT:-8501} --server.address=0.0.0.0"]
