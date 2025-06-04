@@ -13,9 +13,6 @@ st.set_page_config(
     }
 )
 
-
-
-
 # ── 3‑COL LAYOUT ──
 col1, col2, col3 = st.columns([1, 6, 1])
 with col2:

@@ -4,9 +4,9 @@ options:
   logging: CLOUD_LOGGING_ONLY
 
 substitutions:
-  _SERVICE: "mkt-mix-model" # Name of your Cloud Run service
+  _SERVICE: "smartfield-la" # Name of your Cloud Run service
   _REGION: "us-central1" # Change if you prefer a different region
-  _IMAGE: "gcr.io/${PROJECT_ID}/mmm-2-app:${SHORT_SHA}"
+  _IMAGE: "gcr.io/${PROJECT_ID}/strawberry-app:${SHORT_SHA}"
 
 # Tell Cloud Build which images to push to Container Registry
 images:
