@@ -1,0 +1,32 @@
+gcloud services enable run.googleapis.com ^
+       secretmanager.googleapis.com ^
+       containerregistry.googleapis.com ^
+       cloudbuild.googleapis.com
+
+docker build -t southeastern-marketing-mix-prod:latest .
+
+docker run --rm -p 8501:8501 southeastern-marketing-mix-prod:latest
+
+
+gcloud auth configure-docker
+
+docker tag southeastern-marketing-mix-prod:latest gcr.io/cryptic-lattice-460516-n6/southeastern-marketing-mix-prod:v1
+
+
+
+docker push gcr.io/cryptic-lattice-460516-n6/southeastern-marketing-mix-prod:v1
+
+gcloud run deploy southeastern-marketing-mix-prod ^
+  --image gcr.io/cryptic-lattice-460516-n6/southeastern-marketing-mix-prod:v1 ^
+  --region us-central1 ^
+  --platform managed ^
+  --allow-unauthenticated ^
+  --service-account southeastern-cloud-build-deplo@cryptic-lattice-460516-n6.iam.gserviceaccount.com ^
+  --update-secrets=/workspace/.streamlit/config.toml=southeastern-theme-light:latest ^
+  --update-secrets=/home/cnb/.streamlit/secrets.toml=southeastern-secrets:latest
+
+# Costing tags:
+
+gcloud run services update southeastern-marketing-mix-prod ^
+  --region us-central1 ^
+  --update-labels=model=southeastern-marketing-mix-prod
