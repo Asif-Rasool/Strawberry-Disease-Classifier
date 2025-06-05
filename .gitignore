@@ -13,4 +13,5 @@ __pycache__/
 .DS_Store
 Thumbs.db
 ~$FRED_data.xlsx
+.venv\
 
