@@ -4,9 +4,9 @@ options:
   logging: CLOUD_LOGGING_ONLY
 
 substitutions:
-  _SERVICE: "smartfield-la" # Name of your Cloud Run service
+  _SERVICE: "southeastern-smartfield-la-prod" # Name of your Cloud Run service
   _REGION: "us-central1" # Change if you prefer a different region
-  _IMAGE: "gcr.io/${PROJECT_ID}/strawberry-app:${SHORT_SHA}"
+  _IMAGE: "gcr.io/${PROJECT_ID}/southeastern-smartfield-la-prod:${SHORT_SHA}"
 
 # Tell Cloud Build which images to push to Container Registry
 images:
@@ -30,11 +30,11 @@ steps:
 
         # Fetch config.toml content from Secret Manager and write to file
         # Make sure 'livingston-parish-library-config' is the actual name of your secret in Secret Manager
-        gcloud secrets versions access latest --secret="livingston-parish-library-config" --out-file=".streamlit/config.toml"
+        gcloud secrets versions access latest --secret="southeastern-theme-light" --out-file=".streamlit/config.toml"
 
         # Fetch secrets.toml content from Secret Manager and write to file
         # Make sure 'southeastern-lions-ide-secrets' is the actual name of your secret in Secret Manager
-        gcloud secrets versions access latest --secret="southeastern-lions-ide-secrets" --out-file=".streamlit/secrets.toml"
+        gcloud secrets versions access latest --secret="southeastern-secrets" --out-file=".streamlit/secrets.toml"
 
   # 1. Build a Docker image tagged with the commit SHA
   #    The .streamlit folder (with secrets) will now be in the build context.
@@ -62,4 +62,5 @@ steps:
           --image "${_IMAGE}" \
           --region "${_REGION}" \
           --platform managed \
-          --allow-unauthenticated
+          --allow-unauthenticated \
+          --service-account southeastern-cloud-build-deplo@cryptic-lattice-460516-n6.iam.gserviceaccount.com

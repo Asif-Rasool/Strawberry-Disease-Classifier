@@ -1,23 +1,34 @@
+
+# Activate service APIs (need to do it only once)
 gcloud services enable run.googleapis.com ^
        secretmanager.googleapis.com ^
        containerregistry.googleapis.com ^
        cloudbuild.googleapis.com
 
-docker build -t southeastern-marketing-mix-prod:latest .
 
-docker run --rm -p 8501:8501 southeastern-marketing-mix-prod:latest
+##### Login and select GCP project #####
 
+gcloud auth login
+
+gcloud config set project cryptic-lattice-460516-n6
+
+
+##### Build Docker image, tag the image, & Push to GCR #####
+
+docker build -t southeastern-smartfield-la-prod:latest .
+
+docker run --rm -p 8501:8501 southeastern-smartfield-la-prod:latest
 
 gcloud auth configure-docker
 
-docker tag southeastern-marketing-mix-prod:latest gcr.io/cryptic-lattice-460516-n6/southeastern-marketing-mix-prod:v1
+docker tag southeastern-smartfield-la-prod:latest gcr.io/cryptic-lattice-460516-n6/southeastern-smartfield-la-prod:v1
 
+docker push gcr.io/cryptic-lattice-460516-n6/southeastern-smartfield-la-prod:v1
 
+##### Deploy the Model on GCP #####
 
-docker push gcr.io/cryptic-lattice-460516-n6/southeastern-marketing-mix-prod:v1
-
-gcloud run deploy southeastern-marketing-mix-prod ^
-  --image gcr.io/cryptic-lattice-460516-n6/southeastern-marketing-mix-prod:v1 ^
+gcloud run deploy southeastern-smartfield-la-prod ^
+  --image gcr.io/cryptic-lattice-460516-n6/southeastern-smartfield-la-prod:v1 ^
   --region us-central1 ^
   --platform managed ^
   --allow-unauthenticated ^
@@ -25,8 +36,12 @@ gcloud run deploy southeastern-marketing-mix-prod ^
   --update-secrets=/workspace/.streamlit/config.toml=southeastern-theme-light:latest ^
   --update-secrets=/home/cnb/.streamlit/secrets.toml=southeastern-secrets:latest
 
-# Costing tags:
+##### Create Continuous Deployment Trigger using the GCP Could Build Trigger UI ####
 
-gcloud run services update southeastern-marketing-mix-prod ^
+Must modify: cloudbuild.yaml
+
+##### Create Costing Labels: ####
+
+gcloud run services update southeastern-smartfield-la-prod ^
   --region us-central1 ^
-  --update-labels=model=southeastern-marketing-mix-prod
+  --update-labels=model=southeastern-smartfield-la-prod
