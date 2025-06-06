@@ -1,28 +1,39 @@
-# Core
-streamlit==1.44.1
-pandas==2.2.2
-numpy==1.26.4
-# scikit-learn==1.5.1
-matplotlib==3.9.2
-seaborn==0.13.2
-plotly==5.24.1
-pillow==11.1.0
-requests==2.32.3
-scipy==1.13.0
 
-# Excel + Tables
-openpyxl==3.1.2
+# shap==0.47.2
+
+streamlit==1.45.1
+pandas==2.3.0
+numpy==2.2.6
+scikit-learn==1.7.0
+matplotlib==3.10.3
+seaborn==0.13.2
+plotly==6.1.2
+pillow==11.2.1
+requests==2.32.3
+scipy==1.15.3
+openpyxl==3.1.5
 tabulate==0.9.0
 
-# Statistical models
-statsmodels==0.14.2
-
-# AI / Langchain
-google-genai==1.14.0
+# AI bits
+google-genai==1.19.0
+langchain-google-genai==2.1.5
 langchain==0.3.25
-langchain-google-genai==2.1.4
 
 
-# Data download utilities
+# extras
 gdown==5.2.0
 fredapi==0.5.2
+
+fredapi==0.5.2
+
+# conda create -n myenv python=3.13
+# conda activate myenv
+# pip install -r /path/to/requirements.txt
+
+#### PS Command (for VSCode setup) ###
+
+# Windows Powershell -> Run as Admin -> Set-ExecutionPolicy -Scope CurrentUser ExecutionPolicy RemoteSigned
+
+# python -m venv .venv
+# .\.venv\Scripts\Activate
+# pip install -r requirements.txt
