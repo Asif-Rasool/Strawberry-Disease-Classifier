@@ -1,0 +1,65 @@
+# cloudbuild.yaml
+
+options:
+  logging: CLOUD_LOGGING_ONLY
+
+substitutions:
+  _SERVICE: "smartfield-la" # Name of your Cloud Run service
+  _REGION: "us-central1" # Change if you prefer a different region
+  _IMAGE: "gcr.io/${PROJECT_ID}/smartfield-la:${SHORT_SHA}"
+
+# Tell Cloud Build which images to push to Container Registry
+images:
+  - "${_IMAGE}"
+
+# REMOVED: The 'availableSecrets' block is no longer needed here
+#          when using 'gcloud secrets versions access --out-file'
+#          in a build step, as the Cloud Build service account's IAM role
+#          already grants the necessary permissions.
+
+steps:
+  # Step 0: Create the .streamlit directory and fetch secrets into it
+  # This step runs before the Docker build, ensuring secrets are in the build context.
+  - name: "gcr.io/cloud-builders/gcloud"
+    entrypoint: "bash"
+    args:
+      - "-c"
+      - |
+        # Create the .streamlit directory if it doesn't exist in the build workspace
+        mkdir -p .streamlit
+
+        # Fetch config.toml content from Secret Manager and write to file
+        # Make sure 'livingston-parish-library-config' is the actual name of your secret in Secret Manager
+        gcloud secrets versions access latest --secret="livingston-parish-library-config" --out-file=".streamlit/config.toml"
+
+        # Fetch secrets.toml content from Secret Manager and write to file
+        # Make sure 'southeastern-lions-ide-secrets' is the actual name of your secret in Secret Manager
+        gcloud secrets versions access latest --secret="southeastern-lions-ide-secrets" --out-file=".streamlit/secrets.toml"
+
+  # 1. Build a Docker image tagged with the commit SHA
+  #    The .streamlit folder (with secrets) will now be in the build context.
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      - "build"
+      - "-t"
+      - "${_IMAGE}"
+      - "."
+
+  # 2. Push that image up to GCR
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      - "push"
+      - "${_IMAGE}"
+
+  # 3. Deploy the new image to Cloud Run
+  #    Since secrets are now baked into the image, we don't need --update-secrets here.
+  - name: "gcr.io/google.com/cloudsdktool/cloud-sdk:slim"
+    entrypoint: "bash"
+    args:
+      - "-c"
+      - |
+        gcloud run deploy "${_SERVICE}" \
+          --image "${_IMAGE}" \
+          --region "${_REGION}" \
+          --platform managed \
+          --allow-unauthenticated
