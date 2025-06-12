@@ -1,5 +1,5 @@
 import streamlit as st
-
+from PIL import Image
 
 
 st.set_page_config(
@@ -12,9 +12,6 @@ st.set_page_config(
       'About': None
     }
 )
-
-
-
 
 # ── 3‑COL LAYOUT ──
 col1, col2, col3 = st.columns([1, 6, 1])
@@ -60,6 +57,30 @@ Phase 2 focuses on local data collection and model refinement. Pending funding, 
 With this locally sourced dataset in hand, we will resume training by initializing the Mask R-CNN with our Phase 1 weights and continuing the fine-tuning process. We expect that transfer learning on region-specific images, combined with a tailored augmentation pipeline (for example, adjusting brightness ranges to mimic Louisiana’s strong midday sun), will push our mAP target to 85 percent or higher on a held-out test set drawn from farms not used during training. After confirming performance in offline validation, we will export the refined model to TensorFlow Lite with post-training quantization, reducing its size to under 10 MB. Embedding this TFLite asset in the React Native application will enable fully offline, on-device inference on commodity smartphones—a critical feature for growers with limited or intermittent internet access.  
 
 Throughout both phases, we will evaluate model quality not only with quantitative metrics (e.g., mAP at IoU ≥ 0.50) but also with visual inspections of predicted masks on real farm images. A small group of Louisiana growers and extension specialists will test the mobile app in their fields, providing feedback on interface clarity, prediction speed, and mask‐overlay accuracy. Based on this feedback, we will iterate on both the model and user interface: adjusting augmentation parameters, refining object segmentation thresholds, and streamlining the upload workflow to minimize latency. Each major change will be logged in our version control system, and we will document all architecture decisions, training settings, and deployment steps in a living project report. This report will form the backbone of our final manuscript for submission to a leading agricultural journal, ensuring full transparency of methods and enabling others to replicate or adapt our approach for their own crops and regions.  
+""")
+  
+with col2:
+  tech_arch = Image.open("TechArch.png")
+  st.image(tech_arch, caption="End-to-End Pipeline for Strawberry Disease Detection", use_container_width=True)
+
+  st.markdown("""
+We begin by gathering strawberry leaf images and applying a standardized preprocessing pipeline through TensorFlow’s `tf.data` API. This includes resizing, normalization, and data augmentation—such as flips, rotations, and color adjustments—to ensure the network sees diverse examples. Next, we train a Mask R-CNN model with a ResNet101 backbone and export the best checkpoint as a TensorFlow SavedModel.
+
+For the web interface, this model runs in a TensorFlow Serving container behind FastAPI on Google Cloud Run, allowing our React frontend to upload photos and display segmentation overlays in real time. In parallel, we convert the SavedModel to a TensorFlow Lite format with post-training quantization and deploy it via a Google Cloud Function. The quantized model powers our React Native mobile app, enabling fully offline, on-device inference. This hybrid design balances scalability, low latency, and ease of use, giving growers immediate access to accurate disease detection through both web and mobile platforms.
+
+""")
+  
+  tech_stack = Image.open("TechStack.png")
+  st.image(
+    tech_stack,
+    caption="Technology Stack Overview",
+    use_container_width=True
+)
+
+  st.markdown("""
+In our project, we rely on TensorFlow for model development, leveraging the `tf.data` API and data augmentation methods to prepare inputs for a convolutional neural network. Once trained, the model runs in a TensorFlow Serving container behind a FastAPI endpoint on Google Cloud Run, powering our React-based web interface. To support offline, on-device inference, we apply post-training quantization and convert the network to TensorFlow Lite, which we invoke via a Google Cloud Function in our React Native mobile app. All components—training, serving, and front-end—are deployed on Google Cloud Platform, balancing scalability, low latency, and ease of use.
+
+ 
 """)
 
   
