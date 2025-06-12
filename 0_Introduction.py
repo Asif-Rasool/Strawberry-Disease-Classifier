@@ -1,7 +1,5 @@
 import streamlit as st
 
-
-
 st.set_page_config(
     page_title="Intoduction",
     layout="wide",
@@ -11,6 +9,25 @@ st.set_page_config(
       'Report a bug': None,
       'About': None
     }
+)
+
+st.markdown(
+    """
+    <style>
+    /* For general text blocks */
+    .stMarkdown, .stMarkdown * {
+        caret-color: transparent !important;   /* disables blinking text cursor */
+        cursor: default !important;            /* normal arrow cursor */
+    }
+
+    /* For headings */
+    h1, h2, h3, h4, h5, h6 {
+        caret-color: transparent !important;
+        cursor: default !important;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
 )
 
 # ── 3‑COL LAYOUT ──
