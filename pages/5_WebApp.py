@@ -60,7 +60,7 @@ with col2:
 
 with col2:
   st.markdown("---")
-  st.header("SmartField-LA Web Application")
+  st.header("Web Application")
   # st.markdown("---")
   st.markdown("""
 
