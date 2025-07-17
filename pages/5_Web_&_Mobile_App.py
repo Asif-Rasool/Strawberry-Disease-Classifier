@@ -55,31 +55,34 @@ with col2:
 
     st.markdown(HEADER_ICONS, unsafe_allow_html=True)
 
-    
-
-
 with col2:
   st.markdown("---")
-  st.header("Web Application")
+  st.header("Web and Mobile Application")
   # st.markdown("---")
   st.markdown("""
 
-Our first first base model is now live at [smartfield.web.app](https://smartfield.web.app/).  
+Our first base model is now live at [smartfield.web.app](https://smartfield.web.app/).
+                
 This application lets users upload plant leaf images and receive instant disease predictions powered by several deep learning models. A user can also generate concise health reports for their crops. Explore the web app today to see how AI can support disease management in the field.
               
 Our base model mobile application is now ready for testing.
 
 """)
+  
+# Create a 3-column layout
+left, center, right = st.columns([2, 2, 1])
+with center:
   mobile_img = Image.open("MobileApp.png")
   st.image(
         mobile_img,
         caption="SmartField-LA Mobile App Home Screen",
-        use_container_width=True
+        use_container_width=False,
+        width=200
     )
 
  
 ####Footer####
-  st.markdown("---")
+st.markdown("---")
     
 st.markdown(
     """
