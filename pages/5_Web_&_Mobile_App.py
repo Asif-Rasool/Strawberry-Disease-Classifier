@@ -51,16 +51,20 @@ with col2:
 
 # ── WEB AND MOBILE SECTION ──
 with col2:
-    st.markdown("---")
-    st.header("Web and Mobile Application")
-    st.markdown("""
-Our first base model is now live at [smartfield.web.app](https://smartfield.web.app/).  
-This application lets users upload plant leaf images and receive instant disease predictions powered by several deep learning models. You can also generate concise health reports for your crops. Explore the web app today to see how AI can support disease management in the field.
+  st.markdown("---")
+  st.header("Web and Mobile Application")
+  # st.markdown("---")
+  st.markdown("""
 
-Our base model mobile application is now ready for testing. To try it, download the **Expo Go** app from the App Store or Google Play and scan the QR code below.
-    """)
+Our first base model is now live at [smartfield.web.app](https://smartfield.web.app/).
+                
+This application lets users upload plant leaf images and receive instant disease predictions powered by several deep learning models. A user can also generate concise health reports for their crops. Explore the web app today to see how AI can support disease management in the field.
+              
+Our base model mobile application is now ready for testing.
 
-# ── MOBILE SCREENSHOT CENTERED ──
+""")
+  
+# Create a 3-column layout
 left, center, right = st.columns([2, 2, 1])
 with center:
     mobile_img = Image.open("MobileApp.png")
