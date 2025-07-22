@@ -56,11 +56,11 @@ with col2:
   # st.markdown("---")
   st.markdown("""
 
-Our first base model is now live at [smartfield.web.app](https://smartfield.web.app/).
+Our first base model is now live at [smartfield.web.app](https://smartfield-la.web.app/).
                 
 This application lets users upload plant leaf images and receive instant disease predictions powered by several deep learning models. A user can also generate concise health reports for their crops. Explore the web app today to see how AI can support disease management in the field.
               
-Our base model mobile application is now ready for testing.
+Our base model mobile application is now ready for testing. To try it, download the **Expo Go** app from the App Store or Google Play and scan the QR code below.
 
 """)
   
