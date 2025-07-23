@@ -78,7 +78,7 @@ Throughout both phases, we will evaluate model quality not only with quantitativ
 """)
   
 with col2:
-  tech_arch = Image.open("TechArch.png")
+  tech_arch = Image.open("TechArch2.png")
   st.image(tech_arch, caption="End-to-End Pipeline for Strawberry Disease Detection", use_container_width=True)
 
   st.markdown("""
