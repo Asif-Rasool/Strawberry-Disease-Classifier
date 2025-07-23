@@ -78,7 +78,7 @@ with center:
 # ── QR CODE CENTERED ──
 left, center, right = st.columns([2, 2, 1])
 with center:
-    qr_img = Image.open("QR.svg")
+    qr_img = Image.open("QR.png")
     st.image(
         qr_img,
         caption="Scan to Open SmartField-LA in Expo Go",
