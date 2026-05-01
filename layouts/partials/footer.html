@@ -1,0 +1,23 @@
+{{/* Custom footer: show copyright with current year, no theme credit */}}
+<footer class="footer">
+  <span>© {{ now.Year }} {{ if .Site.Copyright }}{{ .Site.Copyright | markdownify }}{{ else }}{{ .Site.Title }}{{ end }}</span>
+</footer>
+
+<button id="back-to-top" aria-label="Back to top" title="Back to top">
+  &#8593;
+</button>
+
+<script>
+  (function() {
+    const btn = document.getElementById('back-to-top');
+    if (!btn) return;
+    const threshold = 160; // show after header area
+    const toggle = () => {
+      if (window.scrollY > threshold) btn.classList.add('show');
+      else btn.classList.remove('show');
+    };
+    window.addEventListener('scroll', toggle, { passive: true });
+    btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    toggle();
+  })();
+</script>

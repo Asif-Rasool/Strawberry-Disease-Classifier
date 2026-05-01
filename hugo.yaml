@@ -1,0 +1,100 @@
+baseURL: "https://asif-rasool.github.io/Strawberry-Disease-Classifier/"
+languageCode: "en-us"
+title: "SmartField LA"
+theme: "PaperMod"
+copyright: "[Asif Rasool](https://www.asifrasool.net), all rights reserved."
+enableInlineShortcodes: true
+enableRobotsTXT: true
+relativeURLs: false
+canonifyURLs: false
+disableKinds:
+  - taxonomy
+  - term
+  - RSS
+
+params:
+  description: "SmartField LA is an end-to-end deep learning framework for real-time strawberry disease detection in Louisiana."
+  author: "Asif Rasool"
+  hideAuthor: true
+  DateFormat: "January 2006"
+  defaultTheme: light
+  hideFooter: false
+  disableThemeToggle: true
+  ShowShareButtons: false
+  ShowReadingTime: false
+  disableSpecial1stPost: true
+  disableAnchoredHeadings: true
+  ShowPostNavLinks: false
+  ShowBreadCrumbs: false
+  ShowCodeCopyButtons: true
+  ShowAllPagesInArchive: false
+  MainSections: ["introduction", "overview", "objectives", "methodology", "data", "web-mobile", "references"]
+  ShowToc: false
+  disableScrollToTop: false
+  TocOpen: true
+  ShowWordCount: false
+  UseHugoToc: true
+  comments: false
+  math: true
+  profileMode:
+    enabled: true
+    title: "SmartField LA"
+    subtitle: "An End-to-End Deep Learning Framework for Real-Time Strawberry Disease Detection in Louisiana"
+    buttons:
+      - name: "Introduction"
+        url: "introduction/"
+      - name: "Overview"
+        url: "overview/"
+      - name: "Objectives"
+        url: "objectives/"
+      - name: "Methodology"
+        url: "methodology/"
+      - name: "Data"
+        url: "data/"
+      - name: "Web & Mobile App"
+        url: "web-mobile/"
+      - name: "References"
+        url: "references/"
+  label:
+    text: "SmartField LA"
+  assets:
+    disableScrollBarStyle: true
+  cover:
+    hiddenInList: false
+    hiddenInSingle: true
+
+menu:
+  main:
+    - name: "Home"
+      pageRef: "/"
+      weight: 10
+    - name: "Introduction"
+      pageRef: "/introduction"
+      weight: 15
+    - name: "Overview"
+      pageRef: "/overview"
+      weight: 20
+    - name: "Objectives"
+      pageRef: "/objectives"
+      weight: 30
+    - name: "Methodology"
+      pageRef: "/methodology"
+      weight: 40
+    - name: "Data"
+      pageRef: "/data"
+      weight: 50
+    - name: "Web & Mobile"
+      pageRef: "/web-mobile"
+      weight: 60
+    - name: "References"
+      pageRef: "/references"
+      weight: 70
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+  tableOfContents:
+    startLevel: 2
+    endLevel: 3
+    ordered: false

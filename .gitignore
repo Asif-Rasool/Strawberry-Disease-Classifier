@@ -15,3 +15,9 @@ Thumbs.db
 ~$FRED_data.xlsx
 .venv/
 .vscode/
+
+# Hugo generated files
+public/
+resources/
+.hugo_build.lock
+.hugo-server*.log
